@@ -22,7 +22,7 @@ exports.imageUpload = async (req, res) => {
     const fileStr = req.body.fileStr;
     // cloudinary.uploader.destroy()
     const uploadResponse = await cloudinary.uploader.upload(fileStr, {
-      upload_preset: "dev_setups",
+      upload_preset: "images-upload",
     });
     const data = {
       image_url: uploadResponse.secure_url,
@@ -33,7 +33,7 @@ exports.imageUpload = async (req, res) => {
     const user_image = await UserImage.create(data);
     res.status(200).json({ msg: "success", data: user_image });
   } catch (err) {
-    console.error(err);
+    console.error("eee===", err);
     res.status(500).json({ err: "Something went wrong" });
   }
 };
